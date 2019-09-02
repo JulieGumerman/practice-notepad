@@ -17,7 +17,18 @@ class App extends React.Component {
   } //close constructor
 
   //Functions to include...
-  //--completed toggle function toggles task from complete to incomplete and back
+  //--completed toggle function
+  toggleCompletion = id => {
+    this.setState({
+      stuffToDo: this.state.stuffToDo.map(todo => {
+        if (id===todo.id) {
+          return {...todo, completed: !todo.completed}
+        } else {
+          return todo;
+        }
+      })
+    })//close setState
+  }//close toggleCompletion
   //--clearCompleted function filters out completed stuff and erases it
   //addToDo
   addToDo = task => {
@@ -35,7 +46,7 @@ class App extends React.Component {
       <div>
         <h1>Things list</h1>
         <Form addToDo={this.addToDo} />
-        <List state={this.state}/>
+        <List state={this.state} toggleCompletion={this.toggleCompletion}/>
       </div>
     ); //close return
   }//close render
