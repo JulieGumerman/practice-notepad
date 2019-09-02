@@ -26,7 +26,7 @@ class Form extends React.Component {
             <form onSubmit = {event => this.manageSubmit(event)}>
                 <input type="text" name="task" placeholder="to do" onChange={this.handleChange} value={this.state.task}/>
                 <button type="submit">Submit it!</button>
-                <button>Clear finished</button>
+                <button onClick={this.props.clearCompleted}>Clear finished</button>
             </form>
         );
     }//end render

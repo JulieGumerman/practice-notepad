@@ -29,7 +29,15 @@ class App extends React.Component {
       })
     })//close setState
   }//close toggleCompletion
-  //--clearCompleted function filters out completed stuff and erases it
+
+  //--clearCompleted
+  clearCompleted = () => {
+    this.setState({
+      stuffToDo: this.state.stuffToDo.filter(todo => {
+        return !todo.completed;
+      })
+    })
+  }
   //addToDo
   addToDo = task => {
     this.setState({
@@ -45,8 +53,8 @@ class App extends React.Component {
     return(
       <div>
         <h1>Things list</h1>
-        <Form addToDo={this.addToDo} />
-        <List state={this.state} toggleCompletion={this.toggleCompletion}/>
+        <Form addToDo={this.addToDo} clearCompleted={this.clearCompleted}/>
+        <List state={this.state} toggleCompletion={this.toggleCompletion} />
       </div>
     ); //close return
   }//close render
